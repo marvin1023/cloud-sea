@@ -1,0 +1,60 @@
+{
+  "name": "cloud-sea",
+  "version": "1.0.0",
+  "description": "封装了一些常见的业务逻辑的请求库，如请求参数与返回数据处理，业务逻辑码（retcode）处理，失败重试，统一成功失败处理等。默认支持小程序与 WEB 请求。",
+  "type": "module",
+  "miniprogram": "dist",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite",
+    "lint": "lint-staged",
+    "clean": "rimraf dist",
+    "build:esm": "rollup -c rollup.config.esm.js",
+    "build:dts": "tsc --emitDeclarationOnly --declaration --project tsconfig.json --outDir dist/esm",
+    "build:umd": "rollup -c rollup.config.umd.js",
+    "build": "npm run clean && npm run build:esm && npm run build:dts && npm run build:umd",
+    "release": "standard-version && npm run build",
+    "prepare": "husky install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "src/**/*.ts": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marvin1023/cloud-sea.git"
+  },
+  "keywords": [
+    "request",
+    "miniapp request",
+    "web request"
+  ],
+  "author": "ycxu",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "@rollup/plugin-babel": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "esbuild": "^0.15.11",
+    "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.75.7",
+    "rollup-plugin-esbuild": "^4.10.1",
+    "rollup-plugin-license": "^2.8.1",
+    "standard-version": "^9.5.0",
+    "typescript": "^4.7.4",
+    "vite": "^3.1.8"
+  }
+}
