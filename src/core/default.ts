@@ -11,5 +11,5 @@ export const defaultConfig: ICloudSeaConfig = {
   retcodeWhiteList: [], // 默认空数组，表示只有 0 为成功
   logicErrorMsgKey: DEFAULT_LOGIC_ERROR_MSG_KEY, // 逻辑错误字段
   logicErrorMsgUnknown: DEFAULT_LOGIC_ERROR_MSG_UNKNOWN,
-  adapter: getDefaultAdapter(),
+  adapter: getDefaultAdapter(), // 自动适配 WEB 还是小程序发送请求
 };

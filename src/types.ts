@@ -69,7 +69,7 @@ export interface ICloudSeaConfig {
 }
 
 export interface IRequestTask {
-  name?: string;
+  name?: string; // 用于取消请求
   client: any;
   urlHasNoSearch: string; // 去掉请求 url 的 query，可用于上报请求地址
   timer: ReturnType<typeof setTimeout>;
@@ -81,7 +81,6 @@ export interface IRequestCtx<T extends ICloudSeaConfig> {
   req: IReqOptions & { header: Record<string, string> };
   res: IRequestSuccessCallbackResult | Record<string, never>;
   ext: T;
-  // ext: U extends Record<string, never> ? ICloudSeaConfig : ICloudSeaConfig & U;
   task: IRequestTask;
 }
 
