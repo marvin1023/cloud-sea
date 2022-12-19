@@ -78,7 +78,7 @@ gRequest.setConfig({
 });
 
 // 如果没有新增字段，则不需要泛型
-// const gRequest = new Request({ logicErrorMsgKey: 'msg' });
+// const gRequest = new Request({ ext: {logicErrorMsgKey: 'msg'} });
 
 export default gRequest;
 ```
@@ -425,6 +425,7 @@ interface IExt extends ICloudSeaConfig {
 
 const gRequest = new CloudSea<IExt>({
   ext: {
+    baseUrl: 'xxx', // xxx 表示以 https 开头的 url 前缀
     loadingTips: false,
     camelCase: true,
     failToast: true,
