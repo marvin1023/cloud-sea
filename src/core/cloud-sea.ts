@@ -55,7 +55,7 @@ export class CloudSea<U extends ICloudSeaConfig = ICloudSeaConfig> {
       this.taskRequesting[dataTask.name] = requestTask;
     }
 
-    this.res.pipe(requestTask.ctx);
+    this.req.pipe(requestTask.ctx);
 
     return requestTask
       .dispatch()
