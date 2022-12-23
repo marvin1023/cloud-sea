@@ -52,7 +52,15 @@ export class Task<X extends IRequestCtx<ICloudSeaConfig>> {
 
             // retcode 处理
             this.retcodeHandler();
-            this.retcodeWhiteListHandler();
+
+            const logicErrMsg = this.retcodeWhiteListHandler();
+
+            if (logicErrMsg) {
+              throw new RequestError(logicErrMsg, {
+                type: REQUEST_ERROR_MAP.logic,
+                retcode: this.ctx.res.data.retcode,
+              });
+            }
 
             return this.ctx;
           }
@@ -163,11 +171,7 @@ export class Task<X extends IRequestCtx<ICloudSeaConfig>> {
     }
 
     // 逻辑错误
-    const logicErrMsg = this.getLogicErrMsg();
-    throw new RequestError(logicErrMsg, {
-      type: REQUEST_ERROR_MAP.logic,
-      retcode,
-    });
+    return this.getLogicErrMsg();
   }
 
   protected getLogicErrMsg(): string {
